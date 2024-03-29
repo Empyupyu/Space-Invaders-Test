@@ -5,13 +5,11 @@ namespace EGameSystems
     public abstract class GameSystem : MonoBehaviour
     {
         protected GameData gameData { get; private set; }
-        protected PlayerData playerData { get; private set; }
         protected ConfigData configData { get; private set; }
 
-        public void InitializeDatas(GameData game, PlayerData player, ConfigData config)
+        public void InitializeDatas(GameData game, ConfigData config)
         {
             gameData = game;
-            playerData = player;
             configData = config;
         }
 

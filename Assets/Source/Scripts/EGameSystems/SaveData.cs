@@ -4,7 +4,7 @@ using Supyrb;
 namespace EGameSystems
 {
     [Serializable]
-    public class PlayerData
+    public class SaveData
     {
         public int LevelIndex;
         public float Money;

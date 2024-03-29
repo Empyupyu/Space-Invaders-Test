@@ -11,7 +11,6 @@ namespace EGameSystems
         public static EGameSystem Instance { get; private set; }
 
         public GameData GameData { get; } = new GameData();
-        public PlayerData PlayerData { get; private set; } = new PlayerData();
 
         [SerializeField] private ConfigData configData;
 
@@ -28,7 +27,6 @@ namespace EGameSystems
                 Instance = this;
             }
 
-            LoadGame();
             AddStates();
             AddSystems();
             InitializeSystemDatas();
@@ -76,23 +74,8 @@ namespace EGameSystems
         {
             for (int i = 0; i < gameSystems.Count; i++)
             {
-                gameSystems[i].InitializeDatas(GameData, PlayerData, configData);
+                gameSystems[i].InitializeDatas(GameData, configData);
             }
-        }
-
-        private void LoadGame()
-        {
-            var save = PlayerPrefs.GetString("SaveGame");
-
-            if(save != "") PlayerData = JsonUtility.FromJson<PlayerData>(save);
-        }
-
-        public void SaveGame()
-        {
-            var save = JsonUtility.ToJson(PlayerData);
-
-            PlayerPrefs.SetString("SaveGame", save);
-            PlayerPrefs.Save();
         }
 
         public  GameSystem GetGameSystem<T>() where T : GameSystem
